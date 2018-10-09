@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+
+    <Title>Simplecast API .NET Client Library</Title>
+    <Authors>Deniz İrgin</Authors>
+    <Description>
+      Simplecast .NET Client Library is a client library targeting .NET Standard 2.0 and .NET 4.6.1 that provides an easy way to interact with the Simplecast API (https://api.simplecast.com/)
+    </Description>
+    <PackageProjectUrl>https://github.com/Blind-Striker/simplecast-api-client-dotnet</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/Blind-Striker/simplecast-api-client-dotnet/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageIconUrl>https://static1.squarespace.com/static/5969ec06cd0f68fd357124e7/t/597b69d1c534a512fc884c69/1501260282327/Simplecast-logo-e92bdb68a4b34260581d7c594bb19791.png?format=300w</PackageIconUrl>
+    <PackageTags>simplecast, client-library, dotnet-core, dotnet, official</PackageTags>
+    <Version>1.0.0</Version>
+
+    <AssemblyName>Simplecast.Client</AssemblyName>
+    <RootNamespace>Simplecast.Client</RootNamespace>
+
+
+    <!-- When compiling .NET SDK 2.0 projects targeting .NET 4.x on Mono using 'dotnet build' you -->
+    <!-- have to teach MSBuild where the Mono copy of the reference asssemblies is -->
+    <TargetIsMono Condition="$(TargetFramework.StartsWith('net4')) and '$(OS)' == 'Unix'">true</TargetIsMono>
+
+    <!-- Look in the standard install locations -->
+    <BaseFrameworkPathOverrideForMono Condition="'$(BaseFrameworkPathOverrideForMono)' == '' AND '$(TargetIsMono)' == 'true' AND EXISTS('/Library/Frameworks/Mono.framework/Versions/Current/lib/mono')">/Library/Frameworks/Mono.framework/Versions/Current/lib/mono</BaseFrameworkPathOverrideForMono>
+    <BaseFrameworkPathOverrideForMono Condition="'$(BaseFrameworkPathOverrideForMono)' == '' AND '$(TargetIsMono)' == 'true' AND EXISTS('/usr/lib/mono')">/usr/lib/mono</BaseFrameworkPathOverrideForMono>
+    <BaseFrameworkPathOverrideForMono Condition="'$(BaseFrameworkPathOverrideForMono)' == '' AND '$(TargetIsMono)' == 'true' AND EXISTS('/usr/local/lib/mono')">/usr/local/lib/mono</BaseFrameworkPathOverrideForMono>
+
+    <!-- If we found Mono reference assemblies, then use them -->
+    <FrameworkPathOverride Condition="'$(BaseFrameworkPathOverrideForMono)' != '' AND '$(TargetFramework)' == 'net461'">$(BaseFrameworkPathOverrideForMono)/4.6.1-api</FrameworkPathOverride>
+
+    <EnableFrameworkPathOverride Condition="'$(BaseFrameworkPathOverrideForMono)' != ''">true</EnableFrameworkPathOverride>
+
+    <!-- Add the Facades directory.  Not sure how else to do this. Necessary at least for .NET 4.5 -->
+    <AssemblySearchPaths Condition="'$(BaseFrameworkPathOverrideForMono)' != ''">$(FrameworkPathOverride)/Facades;$(AssemblySearchPaths)</AssemblySearchPaths>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- When using 'dotnet build' to compile against Mono reference assemblies it seems necessary to add some explicit references to some facade DLLs  -->
+    <Reference Include="System.Runtime" Condition="'$(BaseFrameworkPathOverrideForMono)' != '' AND $(TargetFramework.StartsWith('net4'))" />
+    <Reference Include="System.IO" Condition="'$(BaseFrameworkPathOverrideForMono)' != '' AND $(TargetFramework.StartsWith('net4'))" />
+    <Reference Include="System.Net.Primitives" Condition="'$(BaseFrameworkPathOverrideForMono)' != '' AND $(TargetFramework.StartsWith('net4'))" />
+    <Reference Include="System.Threading.Tasks" Condition="'$(BaseFrameworkPathOverrideForMono)' != '' AND $(TargetFramework.StartsWith('net4'))" />
+    <Reference Include="System.Web" Condition="'$(BaseFrameworkPathOverrideForMono)' != '' AND $(TargetFramework.StartsWith('net4'))" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+    <Reference Include="System.Web" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="System.Net.Http" Version="4.3.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Core\Helpers\" />
+  </ItemGroup>
+</Project>
