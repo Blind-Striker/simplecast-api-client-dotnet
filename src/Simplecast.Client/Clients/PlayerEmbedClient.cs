@@ -16,8 +16,7 @@ namespace Simplecast.Client.Clients
 
         public async Task<ApiResponse<Embed>> GetPlayerEmbedResponseAsync(int podcastId, int episodeId)
         {
-            ApiResponse<Embed> apiResponse =
-                await _restApiClient.GetApiResponseAsync<Embed>(UrlPathBuilder.GetPlayerEmbedUrl(podcastId, episodeId));
+            ApiResponse<Embed> apiResponse = await _restApiClient.GetApiResponseAsync<Embed>(UrlPathBuilder.GetPlayerEmbedUrl(podcastId, episodeId));
 
             return apiResponse;
         }

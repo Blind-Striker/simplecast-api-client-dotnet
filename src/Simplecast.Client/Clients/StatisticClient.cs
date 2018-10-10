@@ -20,8 +20,7 @@ namespace Simplecast.Client.Clients
 
         public async Task<ApiResponse<Statistic>> GetPodcastStatisticResponseAsync(int podcastId)
         {
-            ApiResponse<Statistic> apiResponse =
-                await _restApiClient.GetApiResponseAsync<Statistic>(UrlPathBuilder.GetPodcastStatisticUrl(podcastId));
+            ApiResponse<Statistic> apiResponse = await _restApiClient.GetApiResponseAsync<Statistic>(UrlPathBuilder.GetPodcastStatisticUrl(podcastId));
 
             return apiResponse;
         }
@@ -57,8 +56,7 @@ namespace Simplecast.Client.Clients
         }
 
         public async Task<Statistic> GetPodcastStatisticOverallAsync(int podcastId,
-                                                                     OverallStatisticFilter overallStatisticFilter =
-                                                                         null)
+                                                                     OverallStatisticFilter overallStatisticFilter =null)
         {
             ApiResponse<Statistic> apiResponse =
                 await GetPodcastStatisticOverallResponseAsync(podcastId, overallStatisticFilter);

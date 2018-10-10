@@ -43,7 +43,6 @@ namespace Simplecast.Client.Tests.RestApiClientTests
             IList<KeyValuePair<string, string>> queryStingParameters = queryParams.ToQueryStingParameters();
             IDictionary<string, string> headerParameters = headerParams.ToHeaderParameters();
 
-
             var httpMessageHandler = new Mock<HttpMessageHandler>(MockBehavior.Strict);
             httpMessageHandler
                 .Protected()
