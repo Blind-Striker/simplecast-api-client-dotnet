@@ -65,33 +65,6 @@ namespace Simplecast.Client.Core
             }
         }
 
-        public async Task<ApiResponse> GetApiResponseAsync(string path,
-                                                           IList<KeyValuePair<string, string>> queryParams = null,
-                                                           IDictionary<string, string> headerParams = null)
-        {
-            Ensure.ArgumentNotNullOrEmptyString(path, nameof(path));
-
-            using (HttpResponseMessage httpResponseMessage = await CallAsync(HttpMethod.Get, path, queryParams, headerParams))
-            {
-                string stringContent = await httpResponseMessage.Content.ReadAsStringAsync();
-
-                bool converted = stringContent.TryDeserializeObject(out ErrorResponse errorResponse, _jsonSerializerSettings);
-
-                return new ApiResponse
-                {
-                    HttpStatusCode = httpResponseMessage.StatusCode,
-                    Headers = httpResponseMessage.Headers.ToDictionary(pair => pair.Key, pair => pair.Value.First()),
-                    UrlPath = path,
-                    Message = !httpResponseMessage.IsSuccessStatusCode 
-                                  ? converted 
-                                        ? errorResponse.Error 
-                                        : stringContent
-                                  : null,
-                    Error = !httpResponseMessage.IsSuccessStatusCode
-                };
-            }
-        }
-
         public async Task<TModel> GetAsync<TModel>(string path, 
                                                    IList<KeyValuePair<string, string>> queryParams = null,
                                                    IDictionary<string, string> headerParams = null)

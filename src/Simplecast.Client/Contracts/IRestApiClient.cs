@@ -12,8 +12,6 @@ namespace Simplecast.Client.Contracts
                                                               IDictionary<string, string> headerParams = null)
             where TModel : class, new();
 
-        Task<ApiResponse> GetApiResponseAsync(string path, IList<KeyValuePair<string, string>> queryParams = null,
-                                              IDictionary<string, string> headerParams = null);
 
         Task<TModel> GetAsync<TModel>(string path, IList<KeyValuePair<string, string>> queryParams = null,
                                       IDictionary<string, string> headerParams = null) where TModel : class, new();

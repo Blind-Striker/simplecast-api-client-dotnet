@@ -18,16 +18,14 @@ namespace Simplecast.Client.Clients
 
         public async Task<ApiResponse<List<Podcast>>> GetPodcastsResponseAsync()
         {
-            ApiResponse<List<Podcast>> apiResponse =
-                await _restApiClient.GetApiResponseAsync<List<Podcast>>(UrlPathBuilder.PodcastUrl);
+            ApiResponse<List<Podcast>> apiResponse = await _restApiClient.GetApiResponseAsync<List<Podcast>>(UrlPathBuilder.PodcastUrl);
 
             return apiResponse;
         }
 
         public async Task<ApiResponse<Podcast>> GetPodcastByIdResponseAsync(int id)
         {
-            ApiResponse<Podcast> apiResponse =
-                await _restApiClient.GetApiResponseAsync<Podcast>(UrlPathBuilder.GetPodcastByIdUrl(id));
+            ApiResponse<Podcast> apiResponse = await _restApiClient.GetApiResponseAsync<Podcast>(UrlPathBuilder.GetPodcastByIdUrl(id));
 
             return apiResponse;
         }
