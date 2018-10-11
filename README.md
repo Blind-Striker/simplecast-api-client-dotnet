@@ -4,6 +4,8 @@ Simplecast .NET Client Library is a client library targeting .NET Standard 2.0 a
 
 All requests must be authenticated using your API key, available in your Simplecast account settings. You have the option of authenticating one of three different ways: using HTTP Basic Auth, passing it as a request parameter, or setting an HTTP header. Your API key is available in your [Simplecast account settings](https://api.simplecast.com/user/edit).
 
+[![NuGet](https://img.shields.io/nuget/v/Simplecast.Client.svg)](https://www.nuget.org/packages/Simplecast.Client) 
+
 ## Supported Platforms
 
 * .NET 4.6.1 (Desktop / Server)
@@ -34,6 +36,8 @@ All requests must be authenticated using your API key, available in your Simplec
 3. [License](#license)
 
 ## Installation
+
+[![NuGet](https://img.shields.io/nuget/v/Simplecast.Client.svg)](https://www.nuget.org/packages/Simplecast.Client) 
 
 Following commands can be used to install Simplecast.Client, run the following command in the Package Manager Console
 
