@@ -18,7 +18,7 @@ namespace Simplecast.Sample
         {
             Console.WriteLine("Hello World!");
 
-            var apiOptions = new ApiOptions("sc_NkZ1SRPUu_JaUgHrlKj1pg", "https://api.simplecast.com/v1/");
+            var apiOptions = new ApiOptions("<your token>", "https://api.simplecast.com/v1/");
 
             var services = new ServiceCollection();
             services.AddSingleton(apiOptions);

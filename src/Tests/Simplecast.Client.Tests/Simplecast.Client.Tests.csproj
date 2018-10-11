@@ -49,6 +49,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\SimpleCast.Client\Simplecast.Client.csproj" />
+    <ProjectReference Include="..\..\Simplecast.Client\Simplecast.Client.csproj" />
   </ItemGroup>
 </Project>
