@@ -15,6 +15,13 @@ All requests must be authenticated using your API key, available in your Simplec
 
 ## Continuous integration
 
+| Build server                | Platform      | Build status                                                                                                                                                        | Integration tests                                                                                                                                                   |
+|-----------------------------|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Azure Pipelines             | Windows       | [![Build status](https://denizirgindev.visualstudio.com/simplecast-api-client-dotnet/_apis/build/status/Build%20Simplecast%20Windows)](https://denizirgindev.visualstudio.com/simplecast-api-client-dotnet/_build/latest?definitionId=6) | |
+| Azure Pipelines             | Ubuntu        | [![Build status](https://denizirgindev.visualstudio.com/simplecast-api-client-dotnet/_apis/build/status/Build%20Simplecast%20Ubuntu16)](https://denizirgindev.visualstudio.com/simplecast-api-client-dotnet/_build/latest?definitionId=4) | |
+| Azure Pipelines             | MacOS         | [![Build status](https://denizirgindev.visualstudio.com/simplecast-api-client-dotnet/_apis/build/status/Build%20Simplecast%20macOS)](https://denizirgindev.visualstudio.com/simplecast-api-client-dotnet/_build/latest?definitionId=5) | |
+| AppVeyor                    | Windows       | [![Build status](https://ci.appveyor.com/api/projects/status/pe8ln6mov67p3ayb?svg=true)](https://ci.appveyor.com/project/Blind-Striker/simplecast-api-client-dotnet)           | |
+| Travis                      | Linux / MacOS | [![Build Status](https://travis-ci.com/Blind-Striker/simplecast-api-client-dotnet.svg?token=Vj8PGFoMvzHtyPjfWb4P&branch=master)](https://travis-ci.com/Blind-Striker/simplecast-api-client-dotnet)  | |
 
 ## Table of Contents
 
