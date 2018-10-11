@@ -36,51 +36,30 @@ namespace Simplecast.Sample
             var statisticClient = buildServiceProvider.GetRequiredService<IStatisticClient>();
 
             ApiResponse<List<Podcast>> podcastsResponse = await podcastClient.GetPodcastsResponseAsync();
-            ApiResponse<Podcast> podcastResponse =
-                await podcastClient.GetPodcastByIdResponseAsync(podcastsResponse.Model[0].Id);
+            ApiResponse<Podcast> podcastResponse = await podcastClient.GetPodcastByIdResponseAsync(podcastsResponse.Model[0].Id);
 
             int podcastId = podcastResponse.Model.Id;
 
             ApiResponse<List<Episode>> episodesResponse = await episodeClient.GetEpisodesResponseAsync(podcastId);
-            ApiResponse<Episode> episodeResponse =
-                await episodeClient.GetEpisodeByIdResponseAsync(podcastId, episodesResponse.Model[0].Id);
+            ApiResponse<Episode> episodeResponse = await episodeClient.GetEpisodeByIdResponseAsync(podcastId, episodesResponse.Model[0].Id);
 
             int episodeId = episodeResponse.Model.Id;
 
-            ApiResponse<Embed> playerEmbedResponse =
-                await playerEmbedClient.GetPlayerEmbedResponseAsync(podcastId, episodeId);
+            ApiResponse<Embed> playerEmbedResponse = await playerEmbedClient.GetPlayerEmbedResponseAsync(podcastId, episodeId);
 
-            ApiResponse<Statistic> podcastStatisticResponse =
-                await statisticClient.GetPodcastStatisticResponseAsync(podcastId);
+            ApiResponse<Statistic> podcastStatisticResponse = await statisticClient.GetPodcastStatisticResponseAsync(podcastId);
 
-            ApiResponse<Statistic> podcastOverallStatisticResponse =
-                await statisticClient.GetPodcastStatisticOverallResponseAsync(podcastId); // TimeFrame.Recent - default
+            ApiResponse<Statistic> podcastOverallStatisticResponse = await statisticClient.GetPodcastStatisticOverallResponseAsync(podcastId); // TimeFrame.Recent - default
 
-            podcastOverallStatisticResponse =
-                await statisticClient.GetPodcastStatisticOverallResponseAsync(
-                    podcastId, new OverallStatisticFilter(TimeFrame.All));
-            podcastOverallStatisticResponse =
-                await statisticClient.GetPodcastStatisticOverallResponseAsync(
-                    podcastId, new OverallStatisticFilter(TimeFrame.Year));
-            podcastOverallStatisticResponse = await statisticClient.GetPodcastStatisticOverallResponseAsync(
-                                                  podcastId,
-                                                  new OverallStatisticFilter(
-                                                      TimeFrame.Custom, DateTime.Now, DateTime.Now.AddDays(-3)));
+            podcastOverallStatisticResponse = await statisticClient.GetPodcastStatisticOverallResponseAsync(podcastId, new OverallStatisticFilter(TimeFrame.All));
+            podcastOverallStatisticResponse = await statisticClient.GetPodcastStatisticOverallResponseAsync(podcastId, new OverallStatisticFilter(TimeFrame.Year));
+            podcastOverallStatisticResponse = await statisticClient.GetPodcastStatisticOverallResponseAsync(podcastId, new OverallStatisticFilter(TimeFrame.Custom, DateTime.Now.AddDays(-3), DateTime.Now));
 
-            ApiResponse<Statistic> episodeStatisticResponse =
-                await statisticClient.GetEpisodeStatisticResponseAsync(
-                    podcastId, new EpisodeStatisticFilter(episodeId)); // TimeFrame.Recent - default
+            ApiResponse<Statistic> episodeStatisticResponse = await statisticClient.GetEpisodeStatisticResponseAsync(podcastId, new EpisodeStatisticFilter(episodeId)); // TimeFrame.Recent - default
 
-            episodeStatisticResponse =
-                await statisticClient.GetEpisodeStatisticResponseAsync(
-                    podcastId, new EpisodeStatisticFilter(episodeId, TimeFrame.All));
-            episodeStatisticResponse =
-                await statisticClient.GetEpisodeStatisticResponseAsync(
-                    podcastId, new EpisodeStatisticFilter(episodeId, TimeFrame.Year));
-            episodeStatisticResponse = await statisticClient.GetEpisodeStatisticResponseAsync(
-                                           podcastId,
-                                           new EpisodeStatisticFilter(episodeId, TimeFrame.Custom, DateTime.Now,
-                                                                      DateTime.Now.AddDays(-3)));
+            episodeStatisticResponse = await statisticClient.GetEpisodeStatisticResponseAsync(podcastId, new EpisodeStatisticFilter(episodeId, TimeFrame.All));
+            episodeStatisticResponse = await statisticClient.GetEpisodeStatisticResponseAsync(podcastId, new EpisodeStatisticFilter(episodeId, TimeFrame.Year));
+            episodeStatisticResponse = await statisticClient.GetEpisodeStatisticResponseAsync(podcastId, new EpisodeStatisticFilter(episodeId, TimeFrame.Custom, DateTime.Now.AddDays(-3), DateTime.Now));
         }
     }
 }

@@ -8,6 +8,6 @@ namespace Simplecast.Client.Contracts
     {
         Task<ApiResponse<Embed>> GetPlayerEmbedResponseAsync(int podcastId, int episodeId);
 
-        Task<ApiResponse<Embed>> GetPlayerEmbedAsync(int podcastId, int episodeId);
+        Task<Embed> GetPlayerEmbedAsync(int podcastId, int episodeId);
     }
 }

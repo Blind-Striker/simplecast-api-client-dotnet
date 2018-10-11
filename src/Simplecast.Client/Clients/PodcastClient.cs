@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Simplecast.Client.Contracts;
+using Simplecast.Client.Core;
 using Simplecast.Client.Core.Helpers;
 using Simplecast.Client.Core.Responses;
 using Simplecast.Client.Models;
@@ -23,9 +24,11 @@ namespace Simplecast.Client.Clients
             return apiResponse;
         }
 
-        public async Task<ApiResponse<Podcast>> GetPodcastByIdResponseAsync(int id)
+        public async Task<ApiResponse<Podcast>> GetPodcastByIdResponseAsync(int podcastId)
         {
-            ApiResponse<Podcast> apiResponse = await _restApiClient.GetApiResponseAsync<Podcast>(UrlPathBuilder.GetPodcastByIdUrl(id));
+            Ensure.GreaterThanZero(podcastId, nameof(podcastId));
+
+            ApiResponse<Podcast> apiResponse = await _restApiClient.GetApiResponseAsync<Podcast>(UrlPathBuilder.GetPodcastByIdUrl(podcastId));
 
             return apiResponse;
         }

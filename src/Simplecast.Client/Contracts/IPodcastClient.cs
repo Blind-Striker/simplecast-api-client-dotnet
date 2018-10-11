@@ -9,7 +9,7 @@ namespace Simplecast.Client.Contracts
     {
         Task<ApiResponse<List<Podcast>>> GetPodcastsResponseAsync();
 
-        Task<ApiResponse<Podcast>> GetPodcastByIdResponseAsync(int id);
+        Task<ApiResponse<Podcast>> GetPodcastByIdResponseAsync(int podcastId);
 
         Task<List<Podcast>> GetPodcastsAsync();
 

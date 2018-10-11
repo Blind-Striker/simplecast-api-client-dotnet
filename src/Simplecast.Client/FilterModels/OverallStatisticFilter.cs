@@ -26,9 +26,9 @@ namespace Simplecast.Client.FilterModels
         public string TimeFrame => _timeFrame.Option;
 
         [Query("start_date")]
-        public string StartDate => _startDate?.ToString("YYYY-MM-DD");
+        public string StartDate => _startDate?.ToString("yyyy-MM-dd");
 
         [Query("end_date")]
-        public string EndDate => _endDate?.ToString("YYYY-MM-DD");
+        public string EndDate => _endDate?.ToString("yyyy-MM-dd");
     }
 }

@@ -28,6 +28,9 @@ namespace Simplecast.Client.Clients
 
         public async Task<ApiResponse<Episode>> GetEpisodeByIdResponseAsync(int podcastId, int episodeId)
         {
+            Ensure.GreaterThanZero(podcastId, nameof(podcastId));
+            Ensure.GreaterThanZero(episodeId, nameof(episodeId));
+
             ApiResponse<Episode> apiResponse = await _restApiClient.GetApiResponseAsync<Episode>(UrlPathBuilder.GetEpisodeByIdUrl(podcastId, episodeId));
 
             return apiResponse;

@@ -20,6 +20,8 @@ namespace Simplecast.Client.Clients
 
         public async Task<ApiResponse<Statistic>> GetPodcastStatisticResponseAsync(int podcastId)
         {
+            Ensure.GreaterThanZero(podcastId, nameof(podcastId));
+
             ApiResponse<Statistic> apiResponse = await _restApiClient.GetApiResponseAsync<Statistic>(UrlPathBuilder.GetPodcastStatisticUrl(podcastId));
 
             return apiResponse;
@@ -28,6 +30,8 @@ namespace Simplecast.Client.Clients
         public async Task<ApiResponse<Statistic>> GetPodcastStatisticOverallResponseAsync(
             int podcastId, OverallStatisticFilter overallStatisticFilter = null)
         {
+            Ensure.GreaterThanZero(podcastId, nameof(podcastId));
+
             ApiResponse<Statistic> apiResponse = await _restApiClient.GetApiResponseAsync<Statistic>(
                                                      UrlPathBuilder.GetPodcastStatisticOverallUrl(podcastId),
                                                      overallStatisticFilter?.ToQueryParams());
@@ -38,6 +42,7 @@ namespace Simplecast.Client.Clients
         public async Task<ApiResponse<Statistic>> GetEpisodeStatisticResponseAsync(
             int podcastId, EpisodeStatisticFilter episodeStatisticFilter)
         {
+            Ensure.GreaterThanZero(podcastId, nameof(podcastId));
             Ensure.ArgumentNotNull(episodeStatisticFilter, nameof(episodeStatisticFilter));
             Ensure.GreaterThanZero(episodeStatisticFilter.EpisodeId, nameof(episodeStatisticFilter.EpisodeId));
 
@@ -55,20 +60,16 @@ namespace Simplecast.Client.Clients
             return apiResponse.GetModel();
         }
 
-        public async Task<Statistic> GetPodcastStatisticOverallAsync(int podcastId,
-                                                                     OverallStatisticFilter overallStatisticFilter =null)
+        public async Task<Statistic> GetPodcastStatisticOverallAsync(int podcastId, OverallStatisticFilter overallStatisticFilter = null)
         {
-            ApiResponse<Statistic> apiResponse =
-                await GetPodcastStatisticOverallResponseAsync(podcastId, overallStatisticFilter);
+            ApiResponse<Statistic> apiResponse = await GetPodcastStatisticOverallResponseAsync(podcastId, overallStatisticFilter);
 
             return apiResponse.GetModel();
         }
 
-        public async Task<Statistic> GetEpisodeStatisticAsync(int podcastId,
-                                                              EpisodeStatisticFilter overallStatisticFilter)
+        public async Task<Statistic> GetEpisodeStatisticAsync(int podcastId, EpisodeStatisticFilter overallStatisticFilter)
         {
-            ApiResponse<Statistic> apiResponse =
-                await GetEpisodeStatisticResponseAsync(podcastId, overallStatisticFilter);
+            ApiResponse<Statistic> apiResponse = await GetEpisodeStatisticResponseAsync(podcastId, overallStatisticFilter);
 
             return apiResponse.GetModel();
         }
